@@ -15,7 +15,7 @@ Domain Path: /lang
 */
 
 if ( !defined( 'ABSPATH' ) ) die();
-
+ 
 class brin_plugin {
 
     function __construct() {
