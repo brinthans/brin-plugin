@@ -27,20 +27,28 @@ class brin_plugin {
     }
 
     function activate() {
-        // generate a cpt
+        /**
+         * generate a custom post type
+         */
         $this->custom_post_type();
-        // flush rewrite rules
+        /**
+         * flush rewrite rules
+         */
         flush_rewrite_rules();
     }
 
     function deactivate() {
-        // flush rewrite rules
+        /**
+         * flush rewrite rules
+         */
         flush_rewrite_rules();
     }
 
     function uninstall() {
-        //delete CPT
-        //delete all the plugin data from the DB
+        /**
+         * delete CPT
+         * delete all the plugin data from the DB
+         */
     }
 
     function custom_post_type() {
@@ -48,7 +56,9 @@ class brin_plugin {
     }
 
     function enqueue() {
-        // enqueue all our scripts
+        /**
+         * enqueue all our scripts
+         */
         wp_enqueue_style( 'my_plugin_style', plugins_url( '/assets/mystyle.css', __FILE__ ) );
         wp_enqueue_script( 'my_plugin_script', plugins_url( '/assets/myscript.js', __FILE__ ) );
     }
@@ -59,11 +69,12 @@ if ( class_exists( 'brin_plugin' ) ) {
     $brin_plugin = new brin_plugin();
     $brin_plugin->register();
 }
-
-// activation
+/**
+ * activation
+ */
 register_activation_hook ( __FILE__, array( $brin_plugin, 'activate' ) );
 
-// deactivate
+/**
+ * deactivate
+ */
 register_deactivation_hook ( __FILE__, array( $brin_plugin, 'deactivate' ) );
-
-// uninstall
