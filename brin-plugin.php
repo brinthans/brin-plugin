@@ -22,9 +22,13 @@ class brin_plugin {
         add_action( 'init', array( $this, 'custom_post_type' ) );
     }
 
+    function register() {
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
+    }
+
     function activate() {
         // generate a cpt
-        $this -> custom_post_type();
+        $this->custom_post_type();
         // flush rewrite rules
         flush_rewrite_rules();
     }
@@ -43,9 +47,18 @@ class brin_plugin {
         register_post_type( 'book', ['public' => true, 'label' => 'Books'] );
     }
 
+    function enqueue() {
+        // enqueue all our scripts
+        wp_enqueue_style( 'my_plugin_style', plugins_url( '/assets/mystyle.css', __FILE__ ) );
+        wp_enqueue_script( 'my_plugin_script', plugins_url( '/assets/myscript.js', __FILE__ ) );
+    }
+
 }
 
-if ( class_exists( 'brin_plugin' ) ) $brin_plugin = new brin_plugin();
+if ( class_exists( 'brin_plugin' ) ) {
+    $brin_plugin = new brin_plugin();
+    $brin_plugin->register();
+}
 
 // activation
 register_activation_hook ( __FILE__, array( $brin_plugin, 'activate' ) );

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Trigger this file on plugin uninstall
  * 
