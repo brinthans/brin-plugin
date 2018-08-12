@@ -2,8 +2,9 @@
 /**
  * @package BrinPlugin
  */
+namespace Inc\Base;
 
-class brin_plugin_activate {
+class Activate {
     public static function activate() {
         flush_rewrite_rules();
     }
